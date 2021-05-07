@@ -36,15 +36,15 @@ var lista_studenti = [
 
 //Ciclare su tutti gli studenti e stampare per ognuno di essi, nome e cognome.
 for (var i = 0; i < lista_studenti.length; i++) {
-    console.log(lista_studenti[i]);
     var studente = lista_studenti[i];
-    document.getElementById("registro").insertAdjacentHTML("beforebegin", `<p id="p${i}"></p><hr>`)
+    document.getElementById("registro").insertAdjacentHTML("beforebegin", `<p id="p${i}"></p>`)
     for (var key in studente) {
         document.getElementById(`p${i}`).insertAdjacentHTML("afterbegin", `<b>${key.charAt(0).toUpperCase() + key.slice(1)}:</b> ${studente[key]}<br>`);
     }
 }
 
 //Dare la possibilità all’utente, attraverso 3 prompt(), di aggiungere un nuovo oggetto
+//studente inserendo nell’ordine: nome, cognome e età.
 function addStudent() {
     var inputNome = document.getElementById("nome").value;
     var inputCognome = document.getElementById("cognome").value;
@@ -55,12 +55,18 @@ function addStudent() {
         eta: inputEta,
     }
 
-    var i = lista_studenti.length++
+    var i = lista_studenti.length
     lista_studenti.push(base_studente);
-    var studente = lista_studenti[i];
-    document.getElementById("registro").insertAdjacentHTML("beforebegin", `<p id="p${i}"></p><hr>`)
+    document.getElementById("registro").insertAdjacentHTML("beforebegin", `<p id="p${i}"></p>`)
     for (var key in base_studente) {
         document.getElementById(`p${i}`).insertAdjacentHTML("afterbegin", `<b>${key.charAt(0).toUpperCase() + key.slice(1)}:</b> ${base_studente[key]}<br>`);
     }
 }
-//studente inserendo nell’ordine: nome, cognome e età.
+
+
+//Rimuovi elemento dall'array e dall'HTML
+function removeStudent() {
+    var i = lista_studenti.length - 1;
+    lista_studenti.pop()
+    document.getElementById(`p${i}`).remove();
+}
