@@ -43,5 +43,24 @@ for (var i = 0; i < lista_studenti.length; i++) {
         document.getElementById(`p${i}`).insertAdjacentHTML("afterbegin", `<b>${key.charAt(0).toUpperCase() + key.slice(1)}:</b> ${studente[key]}<br>`);
     }
 }
+
 //Dare la possibilità all’utente, attraverso 3 prompt(), di aggiungere un nuovo oggetto
+function addStudent() {
+    var inputNome = document.getElementById("nome").value;
+    var inputCognome = document.getElementById("cognome").value;
+    var inputEta = document.getElementById("eta").value;
+    var base_studente = {
+        nome: inputNome,
+        cognome: inputCognome,
+        eta: inputEta,
+    }
+
+    var i = lista_studenti.length++
+    lista_studenti.push(base_studente);
+    var studente = lista_studenti[i];
+    document.getElementById("registro").insertAdjacentHTML("beforebegin", `<p id="p${i}"></p><hr>`)
+    for (var key in base_studente) {
+        document.getElementById(`p${i}`).insertAdjacentHTML("afterbegin", `<b>${key.charAt(0).toUpperCase() + key.slice(1)}:</b> ${base_studente[key]}<br>`);
+    }
+}
 //studente inserendo nell’ordine: nome, cognome e età.
